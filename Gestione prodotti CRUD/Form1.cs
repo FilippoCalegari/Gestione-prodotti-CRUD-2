@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +14,8 @@ namespace Gestione_prodotti_CRUD
 {
     public partial class Form1 : Form
     {
+        StreamReader file = new StreamReader("ARTICOLI.csv");
+        
         public struct Prodotti
         {
             public string Nome;
@@ -36,7 +40,7 @@ namespace Gestione_prodotti_CRUD
             lb_ProductsList.Items.Clear();
             for (int i = 0; i < dim; i++)
             {
-                lb_ProductsList.Items.Add($"{p[i].Nome} {p[i].Prezzo}");
+                lb_ProductsList.Items.Add($"{p[i].Nome} {p[i].Prezzo}€");
             }
         }
         public void U()
@@ -72,6 +76,146 @@ namespace Gestione_prodotti_CRUD
                 MessageBox.Show("Il prodotto non esiste.");
             }
         }
+        public void FindMin()
+        {
+            int i;
+            bool ver;
+
+            do
+            {
+                ver = true;
+
+                for (i = 1; i < dim; i++)
+                {
+                    if (p[i - 1].Prezzo > p[i].Prezzo)
+                    {
+                        float biggerPrice = p[i - 1].Prezzo;
+                        string biggerProductName = p[i - 1].Nome;
+
+                        float lowerPrice = p[i].Prezzo;
+                        string lowerProductName = p[i].Nome;
+
+                        p[i].Prezzo = biggerPrice;
+                        p[i].Nome = biggerProductName;
+
+                        p[i - 1].Prezzo = lowerPrice;
+                        p[i - 1].Nome = lowerProductName;
+
+                        ver = false;
+                    }
+
+                }
+
+            } while (ver == false);
+
+            i = 0;
+
+            MessageBox.Show($"Il prodotto col prezzo più basso è {p[i].Nome} che costa {p[i].Prezzo}€.");
+        }
+        public void FindMax()
+        {
+            int i;
+            bool ver;
+
+            do
+            {
+                ver = true;
+
+                for (i = 1; i < dim; i++)
+                {
+                    if (p[i - 1].Prezzo > p[i].Prezzo)
+                    {
+                        float biggerPrice = p[i - 1].Prezzo;
+                        string biggerProductName = p[i - 1].Nome;
+
+                        float lowerPrice = p[i].Prezzo;
+                        string lowerProductName = p[i].Nome;
+
+                        p[i].Prezzo = biggerPrice;
+                        p[i].Nome = biggerProductName;
+
+                        p[i - 1].Prezzo = lowerPrice;
+                        p[i - 1].Nome = lowerProductName;
+
+                        ver = false;
+                    }
+
+                }
+
+            } while (ver == false);
+
+            i = dim - 1;
+
+            MessageBox.Show($"Il prodotto col prezzo più alto è {p[i].Nome} che costa {p[i].Prezzo}€.");
+        }
+        public void OrdinamentoAlfabetico()
+        {
+            int scambi = 0;
+
+            do
+            {
+                scambi = 0;
+
+                for (int i = 0; i < dim - 1; i++)
+                {
+                    if (string.Compare(p[i + 1].Nome, p[i].Nome) < 0)
+                    {
+                        string firstLetter = p[i + 1].Nome;
+                        string secondLetter = p[i].Nome;
+
+                        p[i].Nome = firstLetter;
+                        p[i + 1].Nome = secondLetter;
+                        scambi++;
+                    }
+                }
+            } while (scambi != 0);
+
+            for (int i = 0; i < dim; i++)
+            {
+                lb_ProductsList.Items.Add($"{p[i].Nome} {p[i].Prezzo}€");
+            }
+        }
+        public void SommaPrezzi()
+        {
+            float somma = 0;
+
+            for (int i = 0; i < dim; i++)
+            {
+                somma += p[i].Prezzo;
+            }
+
+            MessageBox.Show($"La somma dei prezzi è {somma}.");
+        }
+        public void PercentSum() 
+        {
+
+        }
+        public void PercentSub()
+        {
+
+        }
+        public void ReadFromFile()
+        {
+            string fileLine;
+            string[] splittedLine = new string[3];
+            int j = 0;
+
+            do
+            {
+                fileLine = file.ReadLine();
+
+                if (fileLine != null)
+                {
+                    splittedLine = fileLine.Split(';');
+                    p[j].Nome = splittedLine[0];
+                    p[j].Prezzo = float.Parse(splittedLine[1]);
+                    lb_ProductsList.Items.Add($"{splittedLine[0]} {float.Parse(splittedLine[1])}€");
+                    j++;
+                }
+            }
+            while (!file.EndOfStream);
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -136,6 +280,46 @@ namespace Gestione_prodotti_CRUD
         private void btn_DeleteProduct_Click(object sender, EventArgs e)
         {
             D();
+        }
+
+        private void btn_FindMin_Click(object sender, EventArgs e)
+        {
+            FindMin();
+        }
+
+        private void btn_FindMax_Click(object sender, EventArgs e)
+        {
+            FindMax();
+        }
+
+        private void btn_OrdinamenteAlfabetico_Click(object sender, EventArgs e)
+        {
+            lb_ProductsList.Items.Clear();
+            OrdinamentoAlfabetico();
+        }
+
+        private void btn_PriceSumm_Click(object sender, EventArgs e)
+        {
+            SommaPrezzi();
+        }
+
+        private void btn_PercentOperations_Click(object sender, EventArgs e)
+        {
+            lbl_Percent.Show();
+            txtb_Percentuale.Show();
+            btn_Sommare.Show();
+            btn_Sottrarre.Show();
+        }
+
+        private void btn_ReadFromFile_Click(object sender, EventArgs e)
+        {
+            ReadFromFile();
+            lbl_UpdateProduct.Show();
+            txtb_UpdateProduct.Show();
+            lbl_NewProductName.Show();
+            txtb_NewProductName.Show();
+            lbl_DeleteProduct.Show();
+            txtb_DeleteProduct.Show();
         }
     }
 }

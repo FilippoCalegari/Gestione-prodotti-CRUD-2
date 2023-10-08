@@ -44,6 +44,17 @@
             this.txtb_UpdateProduct = new System.Windows.Forms.TextBox();
             this.lbl_DeleteProduct = new System.Windows.Forms.Label();
             this.txtb_DeleteProduct = new System.Windows.Forms.TextBox();
+            this.btn_FindMin = new System.Windows.Forms.Button();
+            this.btn_FindMax = new System.Windows.Forms.Button();
+            this.btn_OrdinamenteAlfabetico = new System.Windows.Forms.Button();
+            this.btn_ReadFromFile = new System.Windows.Forms.Button();
+            this.btn_SaveOnFile = new System.Windows.Forms.Button();
+            this.btn_PercentOperations = new System.Windows.Forms.Button();
+            this.btn_PriceSumm = new System.Windows.Forms.Button();
+            this.lbl_Percent = new System.Windows.Forms.Label();
+            this.txtb_Percentuale = new System.Windows.Forms.TextBox();
+            this.btn_Sommare = new System.Windows.Forms.Button();
+            this.btn_Sottrarre = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_ProductName
@@ -118,7 +129,7 @@
             this.btn_AddProduct.Location = new System.Drawing.Point(416, 38);
             this.btn_AddProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_AddProduct.Name = "btn_AddProduct";
-            this.btn_AddProduct.Size = new System.Drawing.Size(300, 308);
+            this.btn_AddProduct.Size = new System.Drawing.Size(308, 308);
             this.btn_AddProduct.TabIndex = 7;
             this.btn_AddProduct.Text = "C";
             this.btn_AddProduct.UseVisualStyleBackColor = true;
@@ -130,7 +141,7 @@
             this.btn_UpdateProduct.Location = new System.Drawing.Point(416, 371);
             this.btn_UpdateProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_UpdateProduct.Name = "btn_UpdateProduct";
-            this.btn_UpdateProduct.Size = new System.Drawing.Size(300, 308);
+            this.btn_UpdateProduct.Size = new System.Drawing.Size(308, 308);
             this.btn_UpdateProduct.TabIndex = 9;
             this.btn_UpdateProduct.Text = "U";
             this.btn_UpdateProduct.UseVisualStyleBackColor = true;
@@ -139,10 +150,10 @@
             // btn_ReadProduct
             // 
             this.btn_ReadProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btn_ReadProduct.Location = new System.Drawing.Point(752, 38);
+            this.btn_ReadProduct.Location = new System.Drawing.Point(732, 38);
             this.btn_ReadProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ReadProduct.Name = "btn_ReadProduct";
-            this.btn_ReadProduct.Size = new System.Drawing.Size(300, 308);
+            this.btn_ReadProduct.Size = new System.Drawing.Size(308, 308);
             this.btn_ReadProduct.TabIndex = 10;
             this.btn_ReadProduct.Text = "R";
             this.btn_ReadProduct.UseVisualStyleBackColor = true;
@@ -151,10 +162,10 @@
             // btn_DeleteProduct
             // 
             this.btn_DeleteProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btn_DeleteProduct.Location = new System.Drawing.Point(752, 371);
+            this.btn_DeleteProduct.Location = new System.Drawing.Point(732, 371);
             this.btn_DeleteProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_DeleteProduct.Name = "btn_DeleteProduct";
-            this.btn_DeleteProduct.Size = new System.Drawing.Size(300, 308);
+            this.btn_DeleteProduct.Size = new System.Drawing.Size(308, 308);
             this.btn_DeleteProduct.TabIndex = 11;
             this.btn_DeleteProduct.Text = "D";
             this.btn_DeleteProduct.UseVisualStyleBackColor = true;
@@ -185,7 +196,7 @@
             // lbl_UpdateProduct
             // 
             this.lbl_UpdateProduct.AutoSize = true;
-            this.lbl_UpdateProduct.Location = new System.Drawing.Point(14, 371);
+            this.lbl_UpdateProduct.Location = new System.Drawing.Point(18, 371);
             this.lbl_UpdateProduct.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_UpdateProduct.Name = "lbl_UpdateProduct";
             this.lbl_UpdateProduct.Size = new System.Drawing.Size(218, 20);
@@ -206,7 +217,7 @@
             // lbl_DeleteProduct
             // 
             this.lbl_DeleteProduct.AutoSize = true;
-            this.lbl_DeleteProduct.Location = new System.Drawing.Point(18, 486);
+            this.lbl_DeleteProduct.Location = new System.Drawing.Point(14, 486);
             this.lbl_DeleteProduct.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_DeleteProduct.Name = "lbl_DeleteProduct";
             this.lbl_DeleteProduct.Size = new System.Drawing.Size(217, 20);
@@ -223,11 +234,149 @@
             this.txtb_DeleteProduct.TabIndex = 19;
             this.txtb_DeleteProduct.Visible = false;
             // 
+            // btn_FindMin
+            // 
+            this.btn_FindMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_FindMin.Location = new System.Drawing.Point(1048, 38);
+            this.btn_FindMin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_FindMin.Name = "btn_FindMin";
+            this.btn_FindMin.Size = new System.Drawing.Size(154, 154);
+            this.btn_FindMin.TabIndex = 20;
+            this.btn_FindMin.Text = "Trovare il Min";
+            this.btn_FindMin.UseVisualStyleBackColor = true;
+            this.btn_FindMin.Click += new System.EventHandler(this.btn_FindMin_Click);
+            // 
+            // btn_FindMax
+            // 
+            this.btn_FindMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_FindMax.Location = new System.Drawing.Point(1210, 38);
+            this.btn_FindMax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_FindMax.Name = "btn_FindMax";
+            this.btn_FindMax.Size = new System.Drawing.Size(154, 154);
+            this.btn_FindMax.TabIndex = 21;
+            this.btn_FindMax.Text = "Trovare il Max";
+            this.btn_FindMax.UseVisualStyleBackColor = true;
+            this.btn_FindMax.Click += new System.EventHandler(this.btn_FindMax_Click);
+            // 
+            // btn_OrdinamenteAlfabetico
+            // 
+            this.btn_OrdinamenteAlfabetico.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_OrdinamenteAlfabetico.Location = new System.Drawing.Point(1048, 192);
+            this.btn_OrdinamenteAlfabetico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_OrdinamenteAlfabetico.Name = "btn_OrdinamenteAlfabetico";
+            this.btn_OrdinamenteAlfabetico.Size = new System.Drawing.Size(316, 154);
+            this.btn_OrdinamenteAlfabetico.TabIndex = 22;
+            this.btn_OrdinamenteAlfabetico.Text = "Ordine Alfabetico";
+            this.btn_OrdinamenteAlfabetico.UseVisualStyleBackColor = true;
+            this.btn_OrdinamenteAlfabetico.Click += new System.EventHandler(this.btn_OrdinamenteAlfabetico_Click);
+            // 
+            // btn_ReadFromFile
+            // 
+            this.btn_ReadFromFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_ReadFromFile.Location = new System.Drawing.Point(1048, 525);
+            this.btn_ReadFromFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_ReadFromFile.Name = "btn_ReadFromFile";
+            this.btn_ReadFromFile.Size = new System.Drawing.Size(154, 154);
+            this.btn_ReadFromFile.TabIndex = 27;
+            this.btn_ReadFromFile.Text = "Leggi da file";
+            this.btn_ReadFromFile.UseVisualStyleBackColor = true;
+            this.btn_ReadFromFile.Click += new System.EventHandler(this.btn_ReadFromFile_Click);
+            // 
+            // btn_SaveOnFile
+            // 
+            this.btn_SaveOnFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_SaveOnFile.Location = new System.Drawing.Point(1210, 525);
+            this.btn_SaveOnFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_SaveOnFile.Name = "btn_SaveOnFile";
+            this.btn_SaveOnFile.Size = new System.Drawing.Size(154, 154);
+            this.btn_SaveOnFile.TabIndex = 26;
+            this.btn_SaveOnFile.Text = "Salva su file";
+            this.btn_SaveOnFile.UseVisualStyleBackColor = true;
+            // 
+            // btn_PercentOperations
+            // 
+            this.btn_PercentOperations.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_PercentOperations.Location = new System.Drawing.Point(1210, 371);
+            this.btn_PercentOperations.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_PercentOperations.Name = "btn_PercentOperations";
+            this.btn_PercentOperations.Size = new System.Drawing.Size(154, 154);
+            this.btn_PercentOperations.TabIndex = 25;
+            this.btn_PercentOperations.Text = "Somma o Sottrai %";
+            this.btn_PercentOperations.UseVisualStyleBackColor = true;
+            this.btn_PercentOperations.Click += new System.EventHandler(this.btn_PercentOperations_Click);
+            // 
+            // btn_PriceSumm
+            // 
+            this.btn_PriceSumm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_PriceSumm.Location = new System.Drawing.Point(1048, 371);
+            this.btn_PriceSumm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_PriceSumm.Name = "btn_PriceSumm";
+            this.btn_PriceSumm.Size = new System.Drawing.Size(154, 154);
+            this.btn_PriceSumm.TabIndex = 24;
+            this.btn_PriceSumm.Text = "Somma prezzi";
+            this.btn_PriceSumm.UseVisualStyleBackColor = true;
+            this.btn_PriceSumm.Click += new System.EventHandler(this.btn_PriceSumm_Click);
+            // 
+            // lbl_Percent
+            // 
+            this.lbl_Percent.AutoSize = true;
+            this.lbl_Percent.Location = new System.Drawing.Point(14, 542);
+            this.lbl_Percent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Percent.Name = "lbl_Percent";
+            this.lbl_Percent.Size = new System.Drawing.Size(313, 20);
+            this.lbl_Percent.TabIndex = 28;
+            this.lbl_Percent.Text = "Scegli percentuale da sommare o sottrarre:";
+            this.lbl_Percent.Visible = false;
+            // 
+            // txtb_Percentuale
+            // 
+            this.txtb_Percentuale.Location = new System.Drawing.Point(18, 567);
+            this.txtb_Percentuale.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtb_Percentuale.Name = "txtb_Percentuale";
+            this.txtb_Percentuale.Size = new System.Drawing.Size(386, 26);
+            this.txtb_Percentuale.TabIndex = 29;
+            this.txtb_Percentuale.Visible = false;
+            // 
+            // btn_Sommare
+            // 
+            this.btn_Sommare.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_Sommare.Location = new System.Drawing.Point(18, 603);
+            this.btn_Sommare.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_Sommare.Name = "btn_Sommare";
+            this.btn_Sommare.Size = new System.Drawing.Size(190, 76);
+            this.btn_Sommare.TabIndex = 30;
+            this.btn_Sommare.Text = "Sommare";
+            this.btn_Sommare.UseVisualStyleBackColor = true;
+            this.btn_Sommare.Visible = false;
+            // 
+            // btn_Sottrarre
+            // 
+            this.btn_Sottrarre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_Sottrarre.Location = new System.Drawing.Point(214, 603);
+            this.btn_Sottrarre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_Sottrarre.Name = "btn_Sottrarre";
+            this.btn_Sottrarre.Size = new System.Drawing.Size(190, 76);
+            this.btn_Sottrarre.TabIndex = 31;
+            this.btn_Sottrarre.Text = "Sottrarre";
+            this.btn_Sottrarre.UseVisualStyleBackColor = true;
+            this.btn_Sottrarre.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1065, 698);
+            this.ClientSize = new System.Drawing.Size(1385, 697);
+            this.Controls.Add(this.btn_Sottrarre);
+            this.Controls.Add(this.btn_Sommare);
+            this.Controls.Add(this.txtb_Percentuale);
+            this.Controls.Add(this.lbl_Percent);
+            this.Controls.Add(this.btn_ReadFromFile);
+            this.Controls.Add(this.btn_SaveOnFile);
+            this.Controls.Add(this.btn_PercentOperations);
+            this.Controls.Add(this.btn_PriceSumm);
+            this.Controls.Add(this.btn_OrdinamenteAlfabetico);
+            this.Controls.Add(this.btn_FindMax);
+            this.Controls.Add(this.btn_FindMin);
             this.Controls.Add(this.txtb_DeleteProduct);
             this.Controls.Add(this.lbl_DeleteProduct);
             this.Controls.Add(this.txtb_UpdateProduct);
@@ -271,6 +420,17 @@
         private System.Windows.Forms.TextBox txtb_UpdateProduct;
         private System.Windows.Forms.Label lbl_DeleteProduct;
         private System.Windows.Forms.TextBox txtb_DeleteProduct;
+        private System.Windows.Forms.Button btn_FindMin;
+        private System.Windows.Forms.Button btn_FindMax;
+        private System.Windows.Forms.Button btn_OrdinamenteAlfabetico;
+        private System.Windows.Forms.Button btn_ReadFromFile;
+        private System.Windows.Forms.Button btn_SaveOnFile;
+        private System.Windows.Forms.Button btn_PercentOperations;
+        private System.Windows.Forms.Button btn_PriceSumm;
+        private System.Windows.Forms.Label lbl_Percent;
+        private System.Windows.Forms.TextBox txtb_Percentuale;
+        private System.Windows.Forms.Button btn_Sommare;
+        private System.Windows.Forms.Button btn_Sottrarre;
     }
 }
 
