@@ -283,10 +283,6 @@ namespace Gestione_prodotti_CRUD
         {
 
         }
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void lbl_NewProductName_Click(object sender, EventArgs e)
         {
 
