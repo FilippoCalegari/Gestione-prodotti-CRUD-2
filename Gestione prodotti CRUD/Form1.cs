@@ -14,14 +14,15 @@ namespace Gestione_prodotti_CRUD
 {
     public partial class Form1 : Form
     {
-        StreamReader file = new StreamReader("ARTICOLI.csv");
+        StreamReader fileRead = new StreamReader(@"Articoli.csv");
+        StreamWriter fileWrite = new StreamWriter("ArticoliSalvati.csv");
         
         public struct Prodotti
         {
             public string Nome;
             public float Prezzo;
-
         }
+
         public Prodotti[] p;
         public int dim;
         private void Form1_Load(object sender, EventArgs e)
@@ -66,6 +67,8 @@ namespace Gestione_prodotti_CRUD
                 if (p[i].Nome == cancelName)
                 {
                     lb_ProductsList.Items.RemoveAt(i);
+                    p[i].Nome = null;
+                    p[i].Prezzo = 0;
                     productExists = true;
                     break;
                 }
@@ -188,11 +191,26 @@ namespace Gestione_prodotti_CRUD
         }
         public void PercentSum() 
         {
+            float discount = float.Parse(txtb_Percentuale.Text);
+            float finalPrice = 0;
+
+            for (int i = 0; i < dim; i++)
+            {
+                finalPrice = (p[i].Prezzo * discount) / 100;
+                p[i].Prezzo += finalPrice;
+            }
 
         }
         public void PercentSub()
         {
+            float discount = float.Parse(txtb_Percentuale.Text);
+            float finalPrice = 0;
 
+            for (int i = 0; i < dim; i++)
+            {
+                finalPrice = (p[i].Prezzo * discount) / 100;
+                p[i].Prezzo -= finalPrice;
+            }
         }
         public void ReadFromFile()
         {
@@ -202,7 +220,7 @@ namespace Gestione_prodotti_CRUD
 
             do
             {
-                fileLine = file.ReadLine();
+                fileLine = fileRead.ReadLine();
 
                 if (fileLine != null)
                 {
@@ -213,7 +231,17 @@ namespace Gestione_prodotti_CRUD
                     j++;
                 }
             }
-            while (!file.EndOfStream);
+            while (!fileRead.EndOfStream);
+        }
+        public void WriteOnFile()
+        {
+            
+            for (int i = 0; i < dim; i++)
+            {
+                fileWrite.WriteLine($"{p[i].Nome};{p[i].Prezzo}");
+            }
+
+            fileWrite.Close();
         }
 
         public Form1()
@@ -320,6 +348,23 @@ namespace Gestione_prodotti_CRUD
             txtb_NewProductName.Show();
             lbl_DeleteProduct.Show();
             txtb_DeleteProduct.Show();
+        }
+
+        private void btn_SaveOnFile_Click(object sender, EventArgs e)
+        {
+            WriteOnFile();
+        }
+
+        private void btn_Sommare_Click(object sender, EventArgs e)
+        {
+            PercentSum();
+            R();
+        }
+
+        private void btn_Sottrarre_Click(object sender, EventArgs e)
+        {
+            PercentSub();
+            R();
         }
     }
 }

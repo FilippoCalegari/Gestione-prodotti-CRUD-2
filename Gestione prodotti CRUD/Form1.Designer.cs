@@ -292,6 +292,7 @@
             this.btn_SaveOnFile.TabIndex = 26;
             this.btn_SaveOnFile.Text = "Salva su file";
             this.btn_SaveOnFile.UseVisualStyleBackColor = true;
+            this.btn_SaveOnFile.Click += new System.EventHandler(this.btn_SaveOnFile_Click);
             // 
             // btn_PercentOperations
             // 
@@ -348,6 +349,7 @@
             this.btn_Sommare.Text = "Sommare";
             this.btn_Sommare.UseVisualStyleBackColor = true;
             this.btn_Sommare.Visible = false;
+            this.btn_Sommare.Click += new System.EventHandler(this.btn_Sommare_Click);
             // 
             // btn_Sottrarre
             // 
@@ -360,6 +362,7 @@
             this.btn_Sottrarre.Text = "Sottrarre";
             this.btn_Sottrarre.UseVisualStyleBackColor = true;
             this.btn_Sottrarre.Visible = false;
+            this.btn_Sottrarre.Click += new System.EventHandler(this.btn_Sottrarre_Click);
             // 
             // Form1
             // 
