@@ -27,24 +27,27 @@ namespace Gestione_prodotti_CRUD
             p = new Prodotti[100];
             dim = 0;
         }
-        public void C()
+        public void C() //Funzione "Crea"
         {
+            //Assegna alle variabili i valori scritti dall'utente
             p[dim].Nome = txtb_ProductName.Text;
             p[dim].Prezzo = float.Parse(txtb_ProductPrice.Text);
             dim++;
         }
-        public void R()
+        public void R() //Funzione "Leggi"
         {
-            lb_ProductsList.Items.Clear();
+            //Visualizza sulla listbox i prodotti e i prezzi
+            lb_ProductsList.Items.Clear(); //La pulisco ogni volta
+
             for (int i = 0; i < dim; i++)
             {
                 lb_ProductsList.Items.Add($"Il prodotto {p[i].Nome} costa {p[i].Prezzo}€.");
             }
         }
-        public void U()
+        public void U() //Funzione "Modifica"
         {
-            string researchName = txtb_UpdateProduct.Text;
-            string newName = txtb_NewProductName.Text;
+            string researchName = txtb_UpdateProduct.Text; //Vecchio prodotto da modificare
+            string newName = txtb_NewProductName.Text; //Nuovo nome da assegnare
 
             for (int i = 0; i < dim; i++)
             {
@@ -54,16 +57,16 @@ namespace Gestione_prodotti_CRUD
                 }
             }
         }
-        public void D()
+        public void D() //Funzione "Elimina"
         {
-            string cancelName = txtb_DeleteProduct.Text;
-            bool productExists = false;
+            string cancelName = txtb_DeleteProduct.Text; //Nome prodotto da eliminare
+            bool productExists = false; //Bool per controllare se esiste
 
             for (int i = 0; i < dim; i++)
             {
                 if (p[i].Nome == cancelName)
                 {
-                    lb_ProductsList.Items.RemoveAt(i);
+                    lb_ProductsList.Items.RemoveAt(i); //Elimina dalla listbox al determinato indice
                     p[i].Nome = null;
                     p[i].Prezzo = 0;
                     productExists = true;
@@ -71,16 +74,17 @@ namespace Gestione_prodotti_CRUD
                 }
             }
 
-            if (productExists == false)
+            if (productExists == false) //In caso il prodotto inserito non esistesse
             {
                 MessageBox.Show("Il prodotto non esiste.");
             }
         }
-        public void FindMin()
+        public void FindMin() //Funzione "Trovare minimo"
         {
             int i;
             bool ver;
 
+            //Faccio un ordinamento in base al prezzo
             do
             {
                 ver = true;
@@ -108,15 +112,18 @@ namespace Gestione_prodotti_CRUD
 
             } while (ver == false);
 
+            //Prendo il primo valore
             i = 0;
 
+            //Visualizzo il nome e il prezzo
             MessageBox.Show($"Il prodotto col prezzo più basso è {p[i].Nome} che costa {p[i].Prezzo}€.");
         }
-        public void FindMax()
+        public void FindMax() //Funzione "Trovare massimo"
         {
             int i;
             bool ver;
 
+            //Faccio un ordinamento in base al prezzo
             do
             {
                 ver = true;
@@ -144,11 +151,13 @@ namespace Gestione_prodotti_CRUD
 
             } while (ver == false);
 
+            //Prendo l'ultimo valore
             i = dim - 1;
 
+            //Visualizzo il nome e il prezzo
             MessageBox.Show($"Il prodotto col prezzo più alto è {p[i].Nome} che costa {p[i].Prezzo}€.");
         }
-        public void OrdinamentoAlfabetico()
+        public void OrdinamentoAlfabetico() //Funzione "Ordinare"
         {
             int scambi = 0;
 
@@ -158,7 +167,7 @@ namespace Gestione_prodotti_CRUD
 
                 for (int i = 0; i < dim - 1; i++)
                 {
-                    if (string.Compare(p[i + 1].Nome, p[i].Nome) < 0)
+                    if (string.Compare(p[i + 1].Nome, p[i].Nome) < 0) //Compare prende le prime due lettere, se la prima da minore di 0, allora scambio
                     {
                         string firstLetter = p[i + 1].Nome;
                         string secondLetter = p[i].Nome;
@@ -172,10 +181,10 @@ namespace Gestione_prodotti_CRUD
 
             for (int i = 0; i < dim; i++)
             {
-                lb_ProductsList.Items.Add($"Il prodotto {p[i].Nome} costa {p[i].Prezzo}€.€");
+                lb_ProductsList.Items.Add($"Il prodotto {p[i].Nome} costa {p[i].Prezzo}€.");
             }
         }
-        public void SommaPrezzi()
+        public void SommaPrezzi() //Funzione "Somma"
         {
             float somma = 0;
 
@@ -186,33 +195,33 @@ namespace Gestione_prodotti_CRUD
 
             MessageBox.Show($"La somma dei prezzi è {somma}.");
         }
-        public void PercentSum() 
+        public void PercentSum() //Funzione "Sommare percentuale"
         {
-            float discount = float.Parse(txtb_Percentuale.Text);
+            float discount = float.Parse(txtb_Percentuale.Text); //"Sconto" da applicare
             float finalPrice = 0;
 
             for (int i = 0; i < dim; i++)
             {
                 finalPrice = (p[i].Prezzo * discount) / 100;
-                p[i].Prezzo += finalPrice;
+                p[i].Prezzo += finalPrice; //Sommo
             }
 
         }
-        public void PercentSub()
+        public void PercentSub() //Funzione "Sottrarre percentuale"
         {
-            float discount = float.Parse(txtb_Percentuale.Text);
+            float discount = float.Parse(txtb_Percentuale.Text); //"Sconto" da applicare
             float finalPrice = 0;
 
             for (int i = 0; i < dim; i++)
             {
                 finalPrice = (p[i].Prezzo * discount) / 100;
-                p[i].Prezzo -= finalPrice;
+                p[i].Prezzo -= finalPrice; //Sottraggo
             }
         }
-        public void ReadFromFile()
+        public void ReadFromFile() //Funzione "Leggere da file"
         {
-            string fileLine;
-            string[] splittedLine = new string[3];
+            string fileLine; //Riga dal file
+            string[] splittedLine = new string[3]; //Array che conterrà la riga splittata
             int j = 0;
 
             using (StreamReader fileRead = new StreamReader(@"Articoli.CSV"))
@@ -223,17 +232,17 @@ namespace Gestione_prodotti_CRUD
 
                     if (fileLine != null)
                     {
-                        splittedLine = fileLine.Split(';');
-                        p[j].Nome = splittedLine[0];
-                        p[j].Prezzo = float.Parse(splittedLine[1]);
-                        lb_ProductsList.Items.Add($"Il prodotto {splittedLine[0]} costa {float.Parse(splittedLine[1])}€.");
+                        splittedLine = fileLine.Split(';'); //Splitto secondo il ";" e butto nell'array
+                        p[j].Nome = splittedLine[0]; //Prima parte è il nome
+                        p[j].Prezzo = float.Parse(splittedLine[1]); //Seconda parte è il prezzo
+                        lb_ProductsList.Items.Add($"Il prodotto {splittedLine[0]} costa {float.Parse(splittedLine[1])}€."); //Rappresento nella listbox
                         j++;
                     }
                 }
                 while (!fileRead.EndOfStream);
             }
         }
-        public void WriteOnFile()
+        public void WriteOnFile() //Funzione "Scrivi su file"
         {
             using (StreamWriter fileWrite = File.AppendText("Articoli.csv"))
             {
