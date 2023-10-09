@@ -14,9 +14,6 @@ namespace Gestione_prodotti_CRUD
 {
     public partial class Form1 : Form
     {
-        StreamReader fileRead = new StreamReader(@"Articoli.csv");
-        StreamWriter fileWrite = new StreamWriter("ArticoliSalvati.csv");
-        
         public struct Prodotti
         {
             public string Nome;
@@ -41,7 +38,7 @@ namespace Gestione_prodotti_CRUD
             lb_ProductsList.Items.Clear();
             for (int i = 0; i < dim; i++)
             {
-                lb_ProductsList.Items.Add($"{p[i].Nome} {p[i].Prezzo}€");
+                lb_ProductsList.Items.Add($"Il prodotto {p[i].Nome} costa {p[i].Prezzo}€.");
             }
         }
         public void U()
@@ -175,7 +172,7 @@ namespace Gestione_prodotti_CRUD
 
             for (int i = 0; i < dim; i++)
             {
-                lb_ProductsList.Items.Add($"{p[i].Nome} {p[i].Prezzo}€");
+                lb_ProductsList.Items.Add($"Il prodotto {p[i].Nome} costa {p[i].Prezzo}€.€");
             }
         }
         public void SommaPrezzi()
@@ -218,30 +215,33 @@ namespace Gestione_prodotti_CRUD
             string[] splittedLine = new string[3];
             int j = 0;
 
-            do
+            using (StreamReader fileRead = new StreamReader(@"Articoli.CSV"))
             {
-                fileLine = fileRead.ReadLine();
-
-                if (fileLine != null)
+                do
                 {
-                    splittedLine = fileLine.Split(';');
-                    p[j].Nome = splittedLine[0];
-                    p[j].Prezzo = float.Parse(splittedLine[1]);
-                    lb_ProductsList.Items.Add($"{splittedLine[0]} {float.Parse(splittedLine[1])}€");
-                    j++;
+                    fileLine = fileRead.ReadLine();
+
+                    if (fileLine != null)
+                    {
+                        splittedLine = fileLine.Split(';');
+                        p[j].Nome = splittedLine[0];
+                        p[j].Prezzo = float.Parse(splittedLine[1]);
+                        lb_ProductsList.Items.Add($"Il prodotto {splittedLine[0]} costa {float.Parse(splittedLine[1])}€.");
+                        j++;
+                    }
                 }
+                while (!fileRead.EndOfStream);
             }
-            while (!fileRead.EndOfStream);
         }
         public void WriteOnFile()
         {
-            
-            for (int i = 0; i < dim; i++)
+            using (StreamWriter fileWrite = File.AppendText("Articoli.csv"))
             {
-                fileWrite.WriteLine($"{p[i].Nome};{p[i].Prezzo}");
+                for (int i = 0; i < dim; i++)
+                {
+                    fileWrite.WriteLine($"{p[i].Nome};{p[i].Prezzo}");
+                }
             }
-
-            fileWrite.Close();
         }
 
         public Form1()
